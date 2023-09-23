@@ -39,6 +39,7 @@ h5,
 h6,
 nav a {
   font-family: "Trajan Pro Regular", sans-serif;
+  text-align: center;
 }
 
 a {
@@ -53,7 +54,6 @@ p {
 }
 
 h2 {
-  text-align: center;
   font-size: 2.5rem;
 }
 
@@ -106,13 +106,4 @@ header nav ul {
   display: flex;
   align-items: center;
   gap: 2rem;
-}
-
-.imagen-portada {
-  height: 25rem;
-}
-
-.imagen-caballero {
-  height: 15rem;
-  margin: 0 5rem;
 }
