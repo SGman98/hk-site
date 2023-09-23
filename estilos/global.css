@@ -28,7 +28,7 @@ body {
 main {
   margin: 0 auto;
   max-width: 1024px;
-  padding: 6rem;
+  padding-top: 5.8rem;
 }
 
 h1,
@@ -36,15 +36,24 @@ h2,
 h3,
 h4,
 h5,
-h6,
+h6 {
+  font-family: "Trajan Pro Regular", sans-serif;
+  text-align: center;
+
+  /* Añade efecto de brillo a los títulos */
+  filter: drop-shadow(0 0 5px #c6b7be);
+}
+
 nav a {
   font-family: "Trajan Pro Regular", sans-serif;
   text-align: center;
+  text-decoration: none;
+  color: #fafbf6;
 }
 
 a {
-  text-decoration: none;
   color: #fafbf6;
+  font-weight: bold;
 }
 
 p {
@@ -53,18 +62,57 @@ p {
   text-align: justify;
 }
 
+h1 {
+  font-size: 3rem;
+}
+
 h2 {
   font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+article {
+  scroll-margin-top: 8rem;
+}
+
+img {
+  border-radius: 1rem;
+
+  /* Añade efecto de brillo a los títulos */
+  filter: drop-shadow(0 0 5px #c6b7be);
 }
 
 .game-title {
   font-family: "Trajan Pro Regular", sans-serif;
 }
 
+.img,
+.img-principal {
+  text-align: center;
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img {
+  width: 20rem;
+  min-width: 20rem;
+}
+
+.img img {
+  margin: auto;
+  max-width: 100%;
+}
+
 /* Estilos para la barra de navegación */
 header {
   position: fixed;
   width: 100%;
+  z-index: 1;
 
   /* Se añade imagen de fondo para simular transparencia del header */
   background-image: linear-gradient(#0f0f1bcc, #0f0f1bcc),
@@ -83,22 +131,34 @@ header nav {
 header nav ul {
   display: flex;
   justify-content: space-around;
-  flex-wrap: wrap;
   padding: 0;
 }
 
 .nav-item {
   list-style: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .nav-item a:hover {
   text-decoration: underline 3px;
   text-underline-offset: 3px;
+
+  /* Añade efecto de brillo a los títulos */
+  filter: drop-shadow(0 0 5px #c6b7be);
 }
 
 .nav-active a {
   text-decoration: underline 3px;
   text-underline-offset: 3px;
+
+  /* Añade efecto de brillo a los títulos */
+  filter: drop-shadow(0 0 5px #c6b7be);
+}
+
+.nav-second {
+  font-size: 0.8rem;
 }
 
 /* Estilos para el contenido de la página */
