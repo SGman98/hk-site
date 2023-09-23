@@ -46,6 +46,21 @@ a {
   color: #fafbf6;
 }
 
+p {
+  font-size: 1.2rem;
+  line-height: 1.2;
+  text-align: justify;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.game-title {
+  font-family: "Trajan Pro Regular", sans-serif;
+}
+
 /* Estilos para la barra de navegación */
 header {
   position: fixed;
@@ -86,3 +101,18 @@ header nav ul {
   text-underline-offset: 3px;
 }
 
+/* Estilos para el contenido de la página */
+.contenedor-horizontal {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.imagen-portada {
+  height: 25rem;
+}
+
+.imagen-caballero {
+  height: 15rem;
+  margin: 0 5rem;
+}
