@@ -168,3 +168,18 @@ header nav ul {
   align-items: center;
   gap: 2rem;
 }
+
+.lista-citas {
+  list-style: none;
+  counter-reset: contador;
+}
+
+.lista-citas li {
+  counter-increment: contador;
+  padding-left: 0.5rem;
+}
+
+.lista-citas li::marker {
+  content: "[" counter(contador) "]";
+  font-weight: bold;
+}
