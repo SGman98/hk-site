@@ -15,15 +15,21 @@
 body {
   font-family: "Baloo Paaji 2", sans-serif; /* Define fuente por defecto */
 
-  /* Imagen animada de fondo con capa de color para legibilidad*/
-  background-image: linear-gradient(#0f0f1b99, #0f0f1b99),
-    url("../recursos/fondo.gif");
-  background-attachment: fixed; /* Fija la imagen de fondo */
-
   min-height: 100vh;
   margin: 0;
 
   color: #fafbf6;
+}
+
+body,
+header,
+footer {
+  /* Imagen animada de fondo con capa de color para legibilidad*/
+  /* Se añade en header y footer para simular transparencia */
+  background-image: linear-gradient(#0f0f1b99, #0f0f1b99),
+    url("../recursos/fondo.gif");
+  background-attachment: fixed; /* Fija la imagen de fondo */
+  background-position: center; /* Centra la imagen de fondo */
 }
 
 main {
@@ -118,11 +124,6 @@ header {
   position: fixed; /* Fija el header en la parte superior de la página */
   width: 100%;
   z-index: 9999; /* Define la capa de visualización del header */
-
-  /* Se añade imagen de fondo para simular transparencia del header */
-  background-image: linear-gradient(#0f0f1b99, #0f0f1b99),
-    url("../recursos/fondo.gif");
-  background-attachment: fixed; /* Fija la imagen de fondo */
 }
 
 header nav {
@@ -180,12 +181,6 @@ footer {
   width: 100%;
   z-index: 9999; /* Define la capa de visualización del header */
   bottom: 0;
-  /* padding: 0.2rem 0; */
-
-  /* Se añade imagen de fondo para simular transparencia del header */
-  background-image: linear-gradient(#0f0f1b99, #0f0f1b99),
-    url("../recursos/fondo.gif");
-  background-attachment: fixed; /* Fija la imagen de fondo */
 
   border-top: 1px solid #fafbf6; /* Muestra una línea superior */
 }
