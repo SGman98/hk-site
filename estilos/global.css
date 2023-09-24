@@ -24,12 +24,12 @@ body {
 body,
 header,
 footer {
-  /* Imagen animada de fondo con capa de color para legibilidad*/
+  /* Imagen de fondo con capa de color para legibilidad*/
   /* Se añade en header y footer para simular transparencia */
   background-image: linear-gradient(#0f0f1b99, #0f0f1b99),
-    url("../recursos/fondo.gif");
-  background-attachment: fixed; /* Fija la imagen de fondo */
-  background-position: center; /* Centra la imagen de fondo */
+    url("../recursos/fondo.png");
+  background-attachment: fixed; /* Fija la imagen de fondo */ 
+  background-position: center; /* Centra la imagen de fondo */ 
 }
 
 main {
@@ -48,9 +48,6 @@ h5,
 h6 {
   font-family: "Trajan Pro Regular", sans-serif; /* Define fuente para títulos */
   text-align: center;
-
-  /* Añade efecto de brillo a los títulos */
-  filter: drop-shadow(0 0 5px #c6b7be);
 }
 
 a {
@@ -95,9 +92,6 @@ blockquote {
 
 img {
   border-radius: 1rem;
-
-  /* Añade efecto de brillo en las imágenes */
-  filter: drop-shadow(0 0 5px #c6b7be);
 }
 
 .game-title {
@@ -157,9 +151,6 @@ header nav ul {
 .nav-active a {
   text-decoration: underline 3px;
   text-underline-offset: 3px;
-
-  /* Añade efecto de brillo a los enlaces del header */
-  filter: drop-shadow(0 0 5px #c6b7be);
 }
 
 .nav-second .nav-item {
@@ -214,19 +205,4 @@ footer p {
   article:nth-child(even) .contenedor-horizontal {
     flex-direction: row-reverse;
   }
-}
-
-.lista-citas {
-  list-style: none;
-  counter-reset: contador;
-}
-
-.lista-citas li {
-  counter-increment: contador;
-  padding-left: 0.5rem;
-}
-
-.lista-citas li::marker {
-  content: "[" counter(contador) "]";
-  font-weight: bold;
 }
