@@ -28,7 +28,7 @@ body {
 main {
   margin: 0 auto;
   max-width: 1024px;
-  padding-top: 5.8rem;
+  padding: 5.8rem 1rem 1rem 1rem;
 }
 
 h1,
@@ -103,7 +103,8 @@ img {
   min-width: 20rem;
 }
 
-.img img {
+.img img,
+.img-principal img {
   margin: auto;
   max-width: 100%;
 }
