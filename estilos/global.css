@@ -37,7 +37,7 @@ main {
   max-width: 1024px;
 
   /* Define los márgenes dejando espacio para el header */
-  padding: 5.8rem 2rem 2rem 2rem;
+  padding: 5.8rem 2rem 4rem 2rem;
 }
 
 h1,
