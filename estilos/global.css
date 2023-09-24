@@ -87,6 +87,12 @@ article {
   scroll-margin-top: 8rem;
 }
 
+blockquote {
+  text-align: center;
+  font-style: italic;
+  line-height: 1.2;
+}
+
 img {
   border-radius: 1rem;
 
