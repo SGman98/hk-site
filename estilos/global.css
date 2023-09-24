@@ -1,4 +1,6 @@
-/* Se importan las fuentes */
+@charset "UTF-8";
+
+/**** Fuentes ****/
 @font-face {
   font-family: "Trajan Pro Regular";
   src: url("../fuentes/Trajan Pro Regular.ttf") format("truetype");
@@ -9,15 +11,14 @@
   src: url("../fuentes/BalooPaaji2.ttf") format("truetype");
 }
 
-/* Estilos generales */
+/**** Estilos generales ****/
 body {
-  font-family: "Baloo Paaji 2", sans-serif;
+  font-family: "Baloo Paaji 2", sans-serif; /* Define fuente por defecto */
 
-  /* Imagen de fondo con capa de color */
+  /* Imagen animada de fondo con capa de color para legibilidad*/
   background-image: linear-gradient(#0f0f1bcc, #0f0f1bcc),
     url("../recursos/fondo.gif");
-  background-size: cover;
-  background-attachment: fixed;
+  background-attachment: fixed; /* Fija la imagen de fondo */
 
   min-height: 100vh;
   margin: 0;
@@ -26,9 +27,11 @@ body {
 }
 
 main {
-  margin: 0 auto;
+  margin: 0 auto; /* Centra el contenido horizontalmente */
   max-width: 1024px;
-  padding: 5.8rem 1rem 1rem 1rem;
+
+  /* Define los márgenes dejando espacio para el header */
+  padding: 5.8rem 2rem 2rem 2rem;
 }
 
 h1,
@@ -37,23 +40,21 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Trajan Pro Regular", sans-serif;
+  font-family: "Trajan Pro Regular", sans-serif; /* Define fuente para títulos */
   text-align: center;
 
   /* Añade efecto de brillo a los títulos */
   filter: drop-shadow(0 0 5px #c6b7be);
 }
 
-nav a {
-  font-family: "Trajan Pro Regular", sans-serif;
-  text-align: center;
-  text-decoration: none;
-  color: #fafbf6;
-}
-
 a {
   color: #fafbf6;
   font-weight: bold;
+}
+
+nav a {
+  font-family: "Trajan Pro Regular", sans-serif;
+  text-decoration: none; /* Elimina subrayado de enlaces */
 }
 
 p {
@@ -62,6 +63,7 @@ p {
   text-align: justify;
 }
 
+/* Tamaños personalizados para títulos */
 h1 {
   font-size: 3rem;
 }
@@ -75,13 +77,14 @@ h3 {
 }
 
 article {
+  /* Define un margen superior para el scroll evitando que el header tape el contenido */
   scroll-margin-top: 8rem;
 }
 
 img {
   border-radius: 1rem;
 
-  /* Añade efecto de brillo a los títulos */
+  /* Añade efecto de brillo en las imágenes */
   filter: drop-shadow(0 0 5px #c6b7be);
 }
 
@@ -93,80 +96,100 @@ img {
 .img-principal {
   text-align: center;
   font-size: 0.8rem;
-  display: flex;
+  display: flex; /* Permite el flujo de elementos en línea */
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* Centra los elementos horizontalmente */
 }
 
 .img {
+  /* Define un tamaño restringido para el contenedor de imagenes */
   width: 20rem;
   min-width: 20rem;
 }
 
 .img img,
 .img-principal img {
-  margin: auto;
+  /* Define un tamaño restringido para las imagenes dentro de los contenedores */
   max-width: 100%;
 }
 
-/* Estilos para la barra de navegación */
+/**** Estilos para la barra de navegación ****/
 header {
-  position: fixed;
+  position: fixed; /* Fija el header en la parte superior de la página */
   width: 100%;
-  z-index: 1;
+  z-index: 9999; /* Define la capa de visualización del header */
 
   /* Se añade imagen de fondo para simular transparencia del header */
   background-image: linear-gradient(#0f0f1bcc, #0f0f1bcc),
     url("../recursos/fondo.gif");
-  background-size: cover;
-  background-attachment: fixed;
+  background-attachment: fixed; /* Fija la imagen de fondo */
 }
 
 header nav {
   max-width: 1280px;
-  margin: 0 auto;
-  width: 90%;
-  border-bottom: 1px solid #fafbf6;
+  margin: 0 auto; /* Centra el contenido horizontalmente */
+  width: 90%; /* Define el ancho del header */
+  border-bottom: 1px solid #fafbf6; /* Muestra una línea inferior */
 }
 
 header nav ul {
-  display: flex;
-  justify-content: space-around;
-  padding: 0;
+  display: flex; /* Permite el flujo de elementos en línea */
+  flex-wrap: wrap;
+  justify-content: space-around; /* Distribuye los elementos en el espacio disponible */
+  padding: 0; /* Elimina el margen por defecto de las listas */
+  margin-bottom: 0.5rem;
 }
 
 .nav-item {
-  list-style: none;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+  list-style: none; /* Elimina los puntos de las listas */
+
+  font-size: 0.8rem;
 }
 
-.nav-item a:hover {
-  text-decoration: underline 3px;
-  text-underline-offset: 3px;
-
-  /* Añade efecto de brillo a los títulos */
-  filter: drop-shadow(0 0 5px #c6b7be);
-}
-
+.nav-item a:hover,
 .nav-active a {
   text-decoration: underline 3px;
   text-underline-offset: 3px;
 
-  /* Añade efecto de brillo a los títulos */
+  /* Añade efecto de brillo a los enlaces del header */
   filter: drop-shadow(0 0 5px #c6b7be);
 }
 
-.nav-second {
-  font-size: 0.8rem;
+.nav-second .nav-item {
+  /* Define un tamaño menor para los enlaces del segundo nivel del header */
+  font-size: 0.6rem;
+  text-decoration: underline;
 }
 
-/* Estilos para el contenido de la página */
+/* Cambia el tamaño de los enlaces en dispositivos con ventana menor a 768px */
+@media screen and (min-width: 768px) {
+  .nav-item {
+    font-size: 1rem;
+  }
+
+  .nav-second .nav-item {
+    font-size: 0.8rem;
+  }
+}
+
+/**** Estilos para el contenido de la página ****/
 .contenedor-horizontal {
   display: flex;
   align-items: center;
+  flex-direction: column; /* flujo vertical en dispositivos móviles */
   gap: 2rem;
+}
+
+/* Cambia el orden de los elementos en con ventana mayor a 768px */
+@media screen and (min-width: 768px) {
+  article .contenedor-horizontal {
+    flex-direction: row; /* flujo horizontal en dispositivos de escritorio */
+  }
+
+  /* Intercala la dirección del flujo en los artículos */
+  article:nth-child(even) .contenedor-horizontal {
+    flex-direction: row-reverse;
+  }
 }
 
 .lista-citas {
