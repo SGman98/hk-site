@@ -16,7 +16,7 @@ body {
   font-family: "Baloo Paaji 2", sans-serif; /* Define fuente por defecto */
 
   /* Imagen animada de fondo con capa de color para legibilidad*/
-  background-image: linear-gradient(#0f0f1bcc, #0f0f1bcc),
+  background-image: linear-gradient(#0f0f1b99, #0f0f1b99),
     url("../recursos/fondo.gif");
   background-attachment: fixed; /* Fija la imagen de fondo */
 
@@ -120,7 +120,7 @@ header {
   z-index: 9999; /* Define la capa de visualización del header */
 
   /* Se añade imagen de fondo para simular transparencia del header */
-  background-image: linear-gradient(#0f0f1bcc, #0f0f1bcc),
+  background-image: linear-gradient(#0f0f1b99, #0f0f1b99),
     url("../recursos/fondo.gif");
   background-attachment: fixed; /* Fija la imagen de fondo */
 }
