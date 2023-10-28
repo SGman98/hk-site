@@ -26,10 +26,10 @@ header,
 footer {
   /* Imagen de fondo con capa de color para legibilidad*/
   /* Se añade en header y footer para simular transparencia */
-  background-image: linear-gradient(#0f0f1b99, #0f0f1b99),
+  background-image: linear-gradient(#0f0f1b99, #0f0f1bdd),
     url("../recursos/fondo.gif");
-  background-attachment: fixed; /* Fija la imagen de fondo */ 
-  background-position: center; /* Centra la imagen de fondo */ 
+  background-attachment: fixed; /* Fija la imagen de fondo */
+  background-position: center; /* Centra la imagen de fondo */
 }
 
 main {
@@ -168,8 +168,8 @@ header nav ul {
   text-decoration: underline;
 }
 
-/* Cambia el tamaño de los enlaces en dispositivos con ventana menor a 768px */
-@media screen and (min-width: 768px) {
+/* Cambia el tamaño de los enlaces en dispositivos con ventana menor a 800px */
+@media screen and (min-width: 800px) {
   .nav-item {
     font-size: 1rem;
   }
@@ -204,8 +204,8 @@ footer p {
   gap: 2rem;
 }
 
-/* Cambia el orden de los elementos en con ventana mayor a 768px */
-@media screen and (min-width: 768px) {
+/* Cambia el orden de los elementos en con ventana mayor a 800px */
+@media screen and (min-width: 800px) {
   article .contenedor-horizontal {
     flex-direction: row; /* flujo horizontal en dispositivos de escritorio */
   }
