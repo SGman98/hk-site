@@ -345,22 +345,25 @@ footer p {
   }
 }
 
+/* Estilos para las citas en los créditos */
 .lista-citas {
-  list-style: none;
-  counter-reset: contador;
+  list-style: none; /* Elimina los puntos de las listas */
+  counter-reset: contador; /* Reinicia el contador de citas */
 }
 
 .lista-citas li {
-  counter-increment: contador;
+  counter-increment: contador; /* Incrementa el contador de citas */
   padding-left: 0.5rem;
 }
 
+/* Evita que las citas se salgan de la pantalla */
 .lista-citas span {
   display: block;
   overflow: hidden;
   white-space: wrap;
 }
 
+/* Añade marcador personalizado a las citas */
 .lista-citas li::marker {
   content: "[" counter(contador) "]";
   font-weight: bold;
