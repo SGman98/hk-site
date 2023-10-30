@@ -127,6 +127,12 @@ img {
   max-width: 100%;
 }
 
+.mapa-de-navegacion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /**** Estilos para la barra de navegación ****/
 header {
   position: fixed; /* Fija el header en la parte superior de la página */
