@@ -187,7 +187,8 @@ header nav ul {
 
   transition:
     max-height 0.8s ease-in-out,
-    filter 0.8s ease-in-out;
+    filter 0.8s ease-in-out,
+    visibility 0.8s ease-in-out;
 }
 
 .nav-item:hover ul {
@@ -276,6 +277,7 @@ header nav ul {
     text-align: left;
     padding: 0 0.5rem;
     margin: 0;
+    top: 0;
   }
 
   /* Estilos para el menú de 3 barras */
