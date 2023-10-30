@@ -300,6 +300,12 @@ header nav ul {
     visibility: visible;
     transform: translateX(0);
   }
+
+  /* Muestra el submenú cuando la sección está activa */
+  .nav-active ul {
+    visibility: visible;
+    max-height: 100vh;
+  }
 }
 
 /**** Estilos para el footer ****/
