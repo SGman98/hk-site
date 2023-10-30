@@ -20,16 +20,19 @@
     <header>
       <!-- Menú de navegación -->
       <nav>
+        <input type="checkbox" id="menu" />
         <ul>
           <!-- Elementos de navegación -->
           <li class="nav-item"><a href="index.html">Inicio</a></li>
           <li class="nav-item">
-            <a href="lugar.html">Lugar</a>
+            <a href="lugar.html">Lugar ▾</a>
             <ul>
               <li class="nav-item">
                 <a href="lugar.html#ciudad-de-lagrimas">Ciudad de lágrimas</a>
               </li>
-              <li class="nav-item"><a href="lugar.html#lago-azul">Lago azul</a></li>
+              <li class="nav-item">
+                <a href="lugar.html#lago-azul">Lago azul</a>
+              </li>
               <li class="nav-item">
                 <a href="lugar.html#canales-reales">Canales reales</a>
               </li>
@@ -40,7 +43,9 @@
                 <a href="lugar.html#torre-del-vigia">Torre del vigía</a>
               </li>
               <li class="nav-item">
-                <a href="lugar.html#casa-de-los-placeres">Casa de los placeres</a>
+                <a href="lugar.html#casa-de-los-placeres"
+                  >Casa de los placeres</a
+                >
               </li>
               <li class="nav-item">
                 <a href="lugar.html#torre-del-amor">Torre del amor</a>
@@ -52,7 +57,7 @@
           </li>
           <li class="nav-item"><a href="historia.html">Historia</a></li>
           <li class="nav-item nav-active">
-            <a href="personas.html">Personas</a>
+            <a href="personas.html">Personas ▾</a>
             <ul>
               <li class="nav-item">
                 <a href="personas.html#maestro-de-almas">Maestro de almas</a>
@@ -86,6 +91,11 @@
           <li class="nav-item"><a href="actividades.html">Actividades</a></li>
           <li class="nav-item"><a href="creditos.html">Creditos</a></li>
         </ul>
+        <label class="burger" for="menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
       </nav>
     </header>
     <!-- Contenido principal de la página -->

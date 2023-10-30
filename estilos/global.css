@@ -152,7 +152,7 @@ header nav ul {
   list-style: none; /* Elimina los puntos de las listas */
   position: relative;
 
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 .nav-item a:hover,
@@ -198,10 +198,104 @@ header nav ul {
   filter: drop-shadow(0 0 5px #c6b7be);
 }
 
+/* Oculta el menú por defecto (entre 800px y 1200px) */
+.burger {
+  display: none;
+  filter: drop-shadow(0 0 5px #0f0f1b);
+}
+
+/* Oculta el checkbox */
+#menu {
+  display: none;
+}
+
+/* Estilos para el menú de 3 barras */
+.burger span {
+  height: calc(100% / 5);
+  background: #fafbf6;
+  border-radius: 1rem;
+  transition: all 0.3s linear;
+}
+
+/* Tranforma las 3 barras en una X */
+#menu:checked ~ .burger span:nth-child(1) {
+  transform: translateY(0.6rem) rotate(45deg);
+}
+
+#menu:checked ~ .burger span:nth-child(2) {
+  opacity: 0;
+}
+
+#menu:checked ~ .burger span:nth-child(3) {
+  transform: translateY(-0.6rem) rotate(-45deg);
+}
+
 /* Cambia el tamaño de los enlaces en dispositivos con ventana menor a 800px */
-@media screen and (min-width: 800px) {
-  .nav-item {
-    font-size: 1rem;
+@media screen and (max-width: 800px) {
+  header {
+    width: fit-content;
+  }
+
+  header nav {
+    margin: 0;
+    width: fit-content;
+    border: none;
+  }
+
+  /* transforma el menú de navegación principal en un despelgable lateral */
+  header nav > ul {
+    visibility: hidden;
+    position: absolute;
+    overflow: hidden;
+
+    transform: translateX(-100%);
+
+    background: #0f0f1bcc;
+    margin: 0;
+    padding: 4rem 2rem;
+
+    height: 100vh;
+
+    flex-direction: column; /* Cambia el flujo de elementos a vertical */
+    justify-content: start; /* Distribuye los elementos en el espacio disponible */
+
+    /* Añade efecto de brillo al menú */
+    filter: drop-shadow(0 0 5px #c6b7be);
+
+    transition:
+      transform 0.8s ease-in-out,
+      filter 0.8s ease-in-out,
+      visibility 0.8s ease-in-out;
+  }
+
+  /* Estilos del submenú en el modo despelgable lateral */
+  .nav-item ul {
+    position: relative;
+    border-radius: 0;
+    background: transparent;
+    text-align: left;
+    padding: 0 0.5rem;
+    margin: 0;
+  }
+
+  /* Estilos para el menú de 3 barras */
+  .burger {
+    display: flex;
+    flex-direction: column;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 2rem;
+    justify-content: space-between;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    cursor: pointer;
+  }
+
+  /* Muestra el menú cuando el checkbox está marcado */
+  #menu:checked ~ ul {
+    visibility: visible;
+    transform: translateX(0);
   }
 }
 
@@ -230,8 +324,8 @@ footer p {
   gap: 2rem;
 }
 
-/* Cambia el orden de los elementos en con ventana mayor a 800px */
-@media screen and (min-width: 800px) {
+/* Cambia el orden de los elementos en con ventana mayor a 1200px */
+@media screen and (min-width: 1200px) {
   article .contenedor-horizontal {
     flex-direction: row; /* flujo horizontal en dispositivos de escritorio */
   }
