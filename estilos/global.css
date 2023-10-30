@@ -171,6 +171,7 @@ header nav ul {
   position: absolute;
   overflow: hidden;
 
+  /* Centra el submenú horizontalmente */
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
@@ -179,6 +180,7 @@ header nav ul {
   padding: 0.5rem;
   border-radius: 0.5rem;
 
+  /* Prepara la animación del desplegable */
   max-height: 0;
   height: fit;
   width: max-content;
@@ -186,6 +188,7 @@ header nav ul {
   text-decoration: underline;
   text-align: center;
 
+  /* se anima sobre max-height ya que el height es dinámico */
   transition:
     max-height 0.5s ease-in-out,
     filter 0.5s ease-in-out,
