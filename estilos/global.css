@@ -95,6 +95,7 @@ blockquote {
 }
 
 img {
+  max-width: 100%;
   border-radius: 1rem;
 
   /* Añade efecto de brillo en las imágenes */
@@ -186,9 +187,9 @@ header nav ul {
   text-align: center;
 
   transition:
-    max-height 0.8s ease-in-out,
-    filter 0.8s ease-in-out,
-    visibility 0.8s ease-in-out;
+    max-height 0.5s ease-in-out,
+    filter 0.5s ease-in-out,
+    visibility 0.5s ease-in-out;
 }
 
 .nav-item:hover ul {
@@ -264,9 +265,9 @@ header nav ul {
     filter: drop-shadow(0 0 5px #c6b7be);
 
     transition:
-      transform 0.8s ease-in-out,
-      filter 0.8s ease-in-out,
-      visibility 0.8s ease-in-out;
+      transform 0.5s ease-in-out,
+      filter 0.5s ease-in-out,
+      visibility 0.5s ease-in-out;
   }
 
   /* Estilos del submenú en el modo despelgable lateral */
@@ -346,6 +347,12 @@ footer p {
 .lista-citas li {
   counter-increment: contador;
   padding-left: 0.5rem;
+}
+
+.lista-citas span {
+  display: block;
+  overflow: hidden;
+  white-space: wrap;
 }
 
 .lista-citas li::marker {
