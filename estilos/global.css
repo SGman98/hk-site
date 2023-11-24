@@ -94,11 +94,12 @@ blockquote {
   line-height: 1.2;
 }
 
-img {
+img,
+canvas {
   max-width: 100%;
   border-radius: 1rem;
 
-  /* Añade efecto de brillo en las imágenes */
+  /* Añade efecto de brillo en las imágenes y canvas */
   filter: drop-shadow(0 0 5px #c6b7be);
 }
 
