@@ -150,13 +150,22 @@ function drawPins() {
   }
 }
 
+function getMousePos(clientX, clientY) {
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
+  return {
+    x: (clientX - rect.left) * scaleX,
+    y: (clientY - rect.top) * scaleY,
+  };
+}
+
 // Se agrega un evento para detectar el movimiento de la rueda del mouse y realizar el zoom
 canvas.addEventListener("wheel", function (e) {
   e.preventDefault(); // Se evita que la página haga scroll
 
   // Se obtiene la posición del mouse respecto al canvas
-  const mouseX = e.clientX - canvas.getBoundingClientRect().left;
-  const mouseY = e.clientY - canvas.getBoundingClientRect().top;
+  const { x: mouseX, y: mouseY } = getMousePos(e.clientX, e.clientY);
 
   const prevScale = scale;
   if (e.deltaY < 0 && scale < maxScale) {
@@ -201,8 +210,7 @@ canvas.addEventListener("mouseleave", onMouseUp);
 
 // Se agrega evento para hover en los pins
 canvas.addEventListener("mousemove", function (e) {
-  const mouseX = e.clientX - canvas.getBoundingClientRect().left;
-  const mouseY = e.clientY - canvas.getBoundingClientRect().top;
+  const { x: mouseX, y: mouseY } = getMousePos(e.clientX, e.clientY);
   hoveredPin = locations.find((location) => {
     const scaledX = location.x * scale + offsetX;
     const scaledY = location.y * scale + offsetY;
@@ -220,8 +228,7 @@ canvas.addEventListener("mousemove", function (e) {
 
 // Se agrega evento para click en los pins
 canvas.addEventListener("click", function (e) {
-  const mouseX = e.clientX - canvas.getBoundingClientRect().left;
-  const mouseY = e.clientY - canvas.getBoundingClientRect().top;
+  const { x: mouseX, y: mouseY } = getMousePos(e.clientX, e.clientY);
   const clickedPin = locations.find((location) => {
     const scaledX = location.x * scale + offsetX;
     const scaledY = location.y * scale + offsetY;
@@ -281,10 +288,10 @@ canvas.addEventListener("touchmove", function (e) {
 
 canvas.addEventListener("touchend", function (e) {
   isDragging = false;
-  const mouseX =
-    e.changedTouches[0].clientX - canvas.getBoundingClientRect().left;
-  const mouseY =
-    e.changedTouches[0].clientY - canvas.getBoundingClientRect().top;
+  const { x: mouseX, y: mouseY } = getMousePos(
+    e.changedTouches[0].clientX,
+    e.changedTouches[0].clientY,
+  );
   const clickedPin = locations.find((location) => {
     const scaledX = location.x * scale + offsetX;
     const scaledY = location.y * scale + offsetY;
