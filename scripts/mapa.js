@@ -8,15 +8,24 @@ image.src = "./recursos/mapa-hallownest.webp";
 
 // Variables para controlar el estado del mapa
 let scale = 2;
-let offsetX = -800;
-let offsetY = -500;
-let startX = 0;
-let startY = 0;
-let isDragging = false;
 let minScale = 1;
 let maxScale = 3;
+
+let offsetX = -800;
+let offsetY = -500;
+
+let lastTouchX, lastTouchY;
+let startX = 0;
+let startY = 0;
+
+let isDragging = false;
 let hoveredPin = null;
 let pinRadius = 20;
+
+// Se obtienen los elementos del info box
+const infoBoxTitle = document.getElementById("info-box-title");
+const infoBox = document.getElementById("info-box-text");
+const infoBoxLink = document.getElementById("info-box-link");
 
 const locations = [
   {
@@ -24,33 +33,56 @@ const locations = [
     y: 420,
     name: "Ciudad de Lágrimas",
     href: "lugar.html#ciudad-de-lagrimas",
+    info: "La Ciudad de las Lágrimas es la ciudad capital de Hallownest alguna vez conocida como la ciudad en el corazon del reino",
   },
-  { x: 650, y: 320, name: "Lago Azul", href: "lugar.html#lago-azul" },
-  { x: 580, y: 520, name: "Canales Reales", href: "lugar.html#canales-reales" },
+  {
+    x: 650,
+    y: 320,
+    name: "Lago Azul",
+    href: "lugar.html#lago-azul",
+    info: "Un lago grande y tranquilo que refleja los minerales azules que lo rodean, dándole al lago su color caracteristico",
+  },
+  {
+    x: 580,
+    y: 520,
+    name: "Canales Reales",
+    href: "lugar.html#canales-reales",
+    info: "Los canales reales son el destino final de las aguas del Lago Azul y azul, por lo que constantemente estan inundados de agua",
+  },
   {
     x: 590,
     y: 380,
     name: "Santuario de Almas",
     href: "lugar.html#santuario-de-almas",
+    info: "El Santuario de almas era una institución de investigacion donde se estudiaba el alma, la materia prima de la vida y como poder controlar el poder oculto que esta posee",
   },
   {
     x: 660,
     y: 360,
     name: "Torre del Vigía",
     href: "lugar.html#torre-del-vigia",
+    info: "Está torre es una de las mas altas de la Ciudad de Lágrimas y es donde se encuentra uno de los guardianes del reino Lurien",
   },
   {
     x: 720,
     y: 380,
     name: "Casa de los Placeres",
     href: "lugar.html#casa-de-los-placeres",
+    info: "En la casa de los placeres se puede encontrar una fuente termal con habilidades curativas",
   },
-  { x: 780, y: 400, name: "Torre del Amor", href: "lugar.html#torre-del-amor" },
+  {
+    x: 780,
+    y: 400,
+    name: "Torre del Amor",
+    href: "lugar.html#torre-del-amor",
+    info: "La morada de El coleccionista, llena de envases de cristal con diversas criaturas adentro",
+  },
   {
     x: 750,
     y: 445,
     name: "Estación del Rey",
     href: "lugar.html#estacion-del-rey",
+    info: "Esta estación se encuentra en el costado derecho de la ciudad y tiene una zona grande que lleva al area central de la ciudad",
   },
 ];
 
@@ -199,12 +231,12 @@ canvas.addEventListener("click", function (e) {
     return distance < pinRadius;
   });
   if (clickedPin) {
-    window.location.href = clickedPin.href;
+    infoBoxTitle.innerHTML = clickedPin.name;
+    infoBox.innerHTML = clickedPin.info;
+    infoBoxLink.href = clickedPin.href;
+    infoBoxLink.innerHTML = "...ver más";
   }
 });
-
-// Variables para controlar el estado del mapa en dispositivos móviles
-let lastTouchX, lastTouchY;
 
 // Eventos para detectar movimiento de los dedos en el mapa y realizar el zoom
 canvas.addEventListener("touchstart", function (e) {
@@ -227,8 +259,8 @@ canvas.addEventListener("touchmove", function (e) {
     const currentTouchX = Math.abs(e.touches[0].clientX - e.touches[1].clientX);
     const currentTouchY = Math.abs(e.touches[0].clientY - e.touches[1].clientY);
 
-    const deltaScaleX = (currentTouchX - lastTouchX);
-    const deltaScaleY = (currentTouchY - lastTouchY);
+    const deltaScaleX = currentTouchX - lastTouchX;
+    const deltaScaleY = currentTouchY - lastTouchY;
 
     const prevScale = scale;
     if (deltaScaleX > 0 && deltaScaleY > 0 && scale < maxScale) scale += 0.1;
@@ -249,21 +281,23 @@ canvas.addEventListener("touchmove", function (e) {
 
 canvas.addEventListener("touchend", function (e) {
   isDragging = false;
-  const touchX =
+  const mouseX =
     e.changedTouches[0].clientX - canvas.getBoundingClientRect().left;
-  const touchY =
+  const mouseY =
     e.changedTouches[0].clientY - canvas.getBoundingClientRect().top;
-
   const clickedPin = locations.find((location) => {
     const scaledX = location.x * scale + offsetX;
     const scaledY = location.y * scale + offsetY;
     const distance = Math.sqrt(
-      Math.pow(touchX - scaledX, 2) + Math.pow(touchY - scaledY, 2),
+      Math.pow(mouseX - scaledX, 2) + Math.pow(mouseY - scaledY, 2),
     );
     return distance < pinRadius;
   });
 
   if (clickedPin) {
-    window.location.href = clickedPin.href;
+    infoBoxTitle.innerHTML = clickedPin.name;
+    infoBox.innerHTML = clickedPin.info;
+    infoBoxLink.href = clickedPin.href;
+    infoBoxLink.innerHTML = "...ver más";
   }
 });
