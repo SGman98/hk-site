@@ -202,3 +202,78 @@ canvas.addEventListener("click", function (e) {
     window.location.href = clickedPin.href;
   }
 });
+
+// Variables para controlar el estado del mapa en dispositivos móviles
+let lastTouchX, lastTouchY;
+
+// Eventos para detectar movimiento de los dedos en el mapa y realizar el zoom
+canvas.addEventListener("touchstart", function (e) {
+  if (e.touches.length === 2) {
+    lastTouchX = Math.abs(e.touches[0].clientX - e.touches[1].clientX);
+    lastTouchY = Math.abs(e.touches[0].clientY - e.touches[1].clientY);
+  }
+});
+
+canvas.addEventListener("touchmove", function (e) {
+  e.preventDefault();
+  if (e.touches.length === 2) {
+    const currentTouchX = Math.abs(e.touches[0].clientX - e.touches[1].clientX);
+    const currentTouchY = Math.abs(e.touches[0].clientY - e.touches[1].clientY);
+
+    const deltaScaleX = (currentTouchX - lastTouchX) / 1000;
+    const deltaScaleY = (currentTouchY - lastTouchY) / 1000;
+
+    const prevScale = scale;
+    scale += (deltaScaleX + deltaScaleY) / 2;
+
+    const midX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+    const midY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+
+    offsetX -= (midX / prevScale - midX / scale) * scale;
+    offsetY -= (midY / prevScale - midY / scale) * scale;
+
+    restrictOffset();
+    drawImage();
+
+    lastTouchX = currentTouchX;
+    lastTouchY = currentTouchY;
+  }
+});
+
+canvas.addEventListener("touchstart", function (e) {
+  if (e.touches.length === 1) {
+    isDragging = true;
+    startX = e.touches[0].clientX - offsetX;
+    startY = e.touches[0].clientY - offsetY;
+  }
+});
+
+canvas.addEventListener("touchmove", function (e) {
+  if (isDragging && e.touches.length === 1) {
+    offsetX = e.touches[0].clientX - startX;
+    offsetY = e.touches[0].clientY - startY;
+    restrictOffset();
+    drawImage();
+  }
+});
+
+canvas.addEventListener("touchend", function (e) {
+  isDragging = false;
+  const touchX =
+    e.changedTouches[0].clientX - canvas.getBoundingClientRect().left;
+  const touchY =
+    e.changedTouches[0].clientY - canvas.getBoundingClientRect().top;
+
+  const clickedPin = locations.find((location) => {
+    const scaledX = location.x * scale + offsetX;
+    const scaledY = location.y * scale + offsetY;
+    const distance = Math.sqrt(
+      Math.pow(touchX - scaledX, 2) + Math.pow(touchY - scaledY, 2),
+    );
+    return distance < pinRadius;
+  });
+
+  if (clickedPin) {
+    window.location.href = clickedPin.href;
+  }
+});
