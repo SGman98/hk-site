@@ -211,12 +211,19 @@ canvas.addEventListener("touchstart", function (e) {
   if (e.touches.length === 2) {
     lastTouchX = Math.abs(e.touches[0].clientX - e.touches[1].clientX);
     lastTouchY = Math.abs(e.touches[0].clientY - e.touches[1].clientY);
+  } else if (e.touches.length === 1) {
+    isDragging = true;
+    startX = e.touches[0].clientX - offsetX;
+    startY = e.touches[0].clientY - offsetY;
   }
 });
 
 canvas.addEventListener("touchmove", function (e) {
   e.preventDefault();
-  if (e.touches.length === 2) {
+  if (isDragging && e.touches.length === 1) {
+    offsetX = e.touches[0].clientX - startX;
+    offsetY = e.touches[0].clientY - startY;
+  } else if (e.touches.length === 2) {
     const currentTouchX = Math.abs(e.touches[0].clientX - e.touches[1].clientX);
     const currentTouchY = Math.abs(e.touches[0].clientY - e.touches[1].clientY);
 
@@ -232,29 +239,11 @@ canvas.addEventListener("touchmove", function (e) {
     offsetX -= (midX / prevScale - midX / scale) * scale;
     offsetY -= (midY / prevScale - midY / scale) * scale;
 
-    restrictOffset();
-    drawImage();
-
     lastTouchX = currentTouchX;
     lastTouchY = currentTouchY;
   }
-});
-
-canvas.addEventListener("touchstart", function (e) {
-  if (e.touches.length === 1) {
-    isDragging = true;
-    startX = e.touches[0].clientX - offsetX;
-    startY = e.touches[0].clientY - offsetY;
-  }
-});
-
-canvas.addEventListener("touchmove", function (e) {
-  if (isDragging && e.touches.length === 1) {
-    offsetX = e.touches[0].clientX - startX;
-    offsetY = e.touches[0].clientY - startY;
-    restrictOffset();
-    drawImage();
-  }
+  restrictOffset();
+  drawImage();
 });
 
 canvas.addEventListener("touchend", function (e) {
