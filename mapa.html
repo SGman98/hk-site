@@ -3,7 +3,7 @@
   <!-- Encabezado del documento -->
   <head>
     <!-- Título de la página que se muestra en la pestaña del navegador -->
-    <title>Acerca de • Ciudad de lágrimas</title>
+    <title>Lugar • Ciudad de lagrimas</title>
 
     <!-- Configuración de la codifiación de caracteres utilizada en el documento -->
     <meta charset="UTF-8" />
@@ -88,10 +88,8 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item"><a href="mapa.html">Mapa</a></li>
-          <li class="nav-item nav-active">
-            <a href="actividades.html">Actividades</a>
-          </li>
+          <li class="nav-item nav-active"><a href="mapa.html">Mapa</a></li>
+          <li class="nav-item"><a href="actividades.html">Actividades</a></li>
           <li class="nav-item"><a href="creditos.html">Creditos</a></li>
         </ul>
         <label class="burger" for="menu">
@@ -103,51 +101,14 @@
     </header>
     <!-- Contenido principal de la página -->
     <main>
-      <article>
-        <h2>Exploración</h2>
-        <!-- Contenedor para flujo usando flex -->
-        <div class="contenedor-horizontal">
-          <section>
-            <p>
-              La Ciudad de Lágrimas es un vasto y complejo laberinto
-              subterráneo, y la exploración es una parte esencial del juego.
-              Mientras exploras, te encontrarás con intrincadas arquitecturas,
-              pasadizos secretos y enemigos variados. Además, descubrirás nuevas
-              áreas y atajos que te permitirán avanzar en la historia del juego
-              y acceder a objetos valiosos.
-            </p>
-          </section>
-        </div>
-      </article>
-      <article>
-        <h2>Arenas de batalla</h2>
-        <div class="contenedor-horizontal">
-          <section>
-            <p>
-              En la Ciudad de Lágrimas, encontrarás varias arenas de batalla
-              donde podrás poner a prueba tus habilidades de combate. Estas
-              arenas suelen estar llenas de enemigos desafiantes que te ofrecen
-              recompensas por derrotarlos. Participar en estas batallas te
-              permitirá ganar <em>Geo</em> (la moneda del juego) y mejorar tus
-              habilidades de combate.
-            </p>
-          </section>
-        </div>
-      </article>
-      <article>
-        <h2>Conocer Historia</h2>
-        <div class="contenedor-horizontal">
-          <section>
-            <p>
-              A lo largo de la Ciudad de Lágrimas, encontrarás pistas y
-              fragmentos de la historia del mundo de Hollow Knight. Al explorar
-              y hablar con personajes no jugables (NPCs), podrás aprender más
-              sobre la historia, la cultura y los eventos que han dado forma al
-              reino subterráneo. La narrativa en Hollow Knight es rica y
-              misteriosa, por lo que descubrir la historia es una parte
-              fundamental para comprender el mundo en el que te encuentras.
-            </p>
-          </section>
+      <article id="hallownest">
+        <h2>Mapa Interactivo Hallownest</h2>
+        <div class="img-principal">
+          <canvas id="mapa" width="1000" height="706"> </canvas>
+          <span>
+            Fan art mapa de Hallownest
+            <sup><a href="creditos.html">[4]</a></sup>
+          </span>
         </div>
       </article>
     </main>
@@ -159,5 +120,7 @@
       </p>
       <p>&copy; 2023 Sebastian Garnica Quiroz</p>
     </footer>
+
+    <script src="scripts/mapa.js"></script>
   </body>
 </html>

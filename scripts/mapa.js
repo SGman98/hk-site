@@ -4,7 +4,7 @@ const ctx = canvas.getContext("2d");
 
 // Se crea la imagen y se le asigna la ruta
 const image = new Image();
-image.src = "../recursos/mapa-hallownest.webp";
+image.src = "./recursos/mapa-hallownest.webp";
 
 // Variables para controlar el estado del mapa
 let scale = 2;
@@ -16,16 +16,42 @@ let isDragging = false;
 let minScale = 1;
 let maxScale = 3;
 let hoveredPin = null;
+let pinRadius = 20;
 
 const locations = [
-  { x: 650, y: 420, name: "Ciudad de Lágrimas" },
-  { x: 650, y: 320, name: "Lago Azul" },
-  { x: 580, y: 520, name: "Canales Reales" },
-  { x: 590, y: 380, name: "Santuario de Almas" },
-  { x: 660, y: 360, name: "Torre del Vigía" },
-  { x: 720, y: 380, name: "Casa de los Placeres" },
-  { x: 780, y: 400, name: "Torre del Amor" },
-  { x: 750, y: 445, name: "Estación del Rey" },
+  {
+    x: 650,
+    y: 420,
+    name: "Ciudad de Lágrimas",
+    href: "lugar.html#ciudad-de-lagrimas",
+  },
+  { x: 650, y: 320, name: "Lago Azul", href: "lugar.html#lago-azul" },
+  { x: 580, y: 520, name: "Canales Reales", href: "lugar.html#canales-reales" },
+  {
+    x: 590,
+    y: 380,
+    name: "Santuario de Almas",
+    href: "lugar.html#santuario-de-almas",
+  },
+  {
+    x: 660,
+    y: 360,
+    name: "Torre del Vigía",
+    href: "lugar.html#torre-del-vigia",
+  },
+  {
+    x: 720,
+    y: 380,
+    name: "Casa de los Placeres",
+    href: "lugar.html#casa-de-los-placeres",
+  },
+  { x: 780, y: 400, name: "Torre del Amor", href: "lugar.html#torre-del-amor" },
+  {
+    x: 750,
+    y: 445,
+    name: "Estación del Rey",
+    href: "lugar.html#estacion-del-rey",
+  },
 ];
 
 // Función para dibujar la imagen
@@ -55,8 +81,6 @@ function restrictOffset() {
 }
 
 function drawPins() {
-  const pinRadius = 20;
-
   locations.forEach((location) => {
     const { x, y } = location;
 
@@ -64,7 +88,7 @@ function drawPins() {
     const scaledY = y * scale + offsetY;
 
     const image = new Image();
-    image.src = "../recursos/marcador.webp";
+    image.src = "./recursos/marcador.webp";
     ctx.filter = "drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.5))";
     ctx.drawImage(
       image,
@@ -153,7 +177,28 @@ canvas.addEventListener("mousemove", function (e) {
     const distance = Math.sqrt(
       Math.pow(mouseX - scaledX, 2) + Math.pow(mouseY - scaledY, 2),
     );
-    return distance < 10;
+    return distance < pinRadius;
   });
+
+  if (hoveredPin) canvas.style.cursor = "pointer";
+  else canvas.style.cursor = "default";
+
   drawImage();
+});
+
+// Se agrega evento para click en los pins
+canvas.addEventListener("click", function (e) {
+  const mouseX = e.clientX - canvas.getBoundingClientRect().left;
+  const mouseY = e.clientY - canvas.getBoundingClientRect().top;
+  const clickedPin = locations.find((location) => {
+    const scaledX = location.x * scale + offsetX;
+    const scaledY = location.y * scale + offsetY;
+    const distance = Math.sqrt(
+      Math.pow(mouseX - scaledX, 2) + Math.pow(mouseY - scaledY, 2),
+    );
+    return distance < pinRadius;
+  });
+  if (clickedPin) {
+    window.location.href = clickedPin.href;
+  }
 });
