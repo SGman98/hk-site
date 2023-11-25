@@ -27,6 +27,7 @@ const infoBoxTitle = document.getElementById("info-box-title");
 const infoBox = document.getElementById("info-box-text");
 const infoBoxLink = document.getElementById("info-box-link");
 
+// Se crea un arreglo con la información de los marcadores del mapa
 const locations = [
   {
     x: 650,
@@ -95,8 +96,8 @@ function drawImage() {
     offsetY,
     image.width * scale,
     image.height * scale,
-  );
-  drawPins();
+  ); // Se dibuja la imagen principal del mapa
+  drawPins(); // Se dibujan todos los marcadores
 }
 
 // Se asigna la acción de dibujar la imagen cuando la imagen se carga
@@ -150,6 +151,7 @@ function drawPins() {
   }
 }
 
+// Función para obtener la posición del mouse respecto al canvas
 function getMousePos(clientX, clientY) {
   const rect = canvas.getBoundingClientRect();
   const scaleX = canvas.width / rect.width;
@@ -168,11 +170,8 @@ canvas.addEventListener("wheel", function (e) {
   const { x: mouseX, y: mouseY } = getMousePos(e.clientX, e.clientY);
 
   const prevScale = scale;
-  if (e.deltaY < 0 && scale < maxScale) {
-    scale += 0.1;
-  } else if (e.deltaY > 0 && scale > minScale) {
-    scale -= 0.1;
-  }
+  if (e.deltaY < 0 && scale < maxScale) scale += 0.1;
+  if (e.deltaY > 0 && scale > minScale) scale -= 0.1;
 
   // Se calcula el desplazamiento del mapa para que el zoom se haga en el punto donde se encuentra el mouse
   offsetX = offsetX - (mouseX / prevScale - mouseX / scale) * scale;
@@ -182,31 +181,22 @@ canvas.addEventListener("wheel", function (e) {
   drawImage(); // Se vuelve a dibujar la imagen
 });
 
-// Funciones para controlar el desplazamiento del mapa
-function onMouseDown(e) {
+// Se agregan los eventos para controlar el desplazamiento del mapa
+canvas.addEventListener("mousedown", (e) => {
   isDragging = true;
   startX = e.clientX - offsetX;
   startY = e.clientY - offsetY;
-}
-
-function onMouseMove(e) {
+});
+canvas.addEventListener("mousemove", (e) => {
   if (isDragging) {
     offsetX = e.clientX - startX;
     offsetY = e.clientY - startY;
     restrictOffset();
     drawImage();
   }
-}
-
-function onMouseUp() {
-  isDragging = false;
-}
-
-// Se agregan los eventos para controlar el desplazamiento del mapa
-canvas.addEventListener("mousedown", onMouseDown);
-canvas.addEventListener("mousemove", onMouseMove);
-canvas.addEventListener("mouseup", onMouseUp);
-canvas.addEventListener("mouseleave", onMouseUp);
+});
+canvas.addEventListener("mouseup", () => (isDragging = false));
+canvas.addEventListener("mouseleave", () => (isDragging = false));
 
 // Se agrega evento para hover en los pins
 canvas.addEventListener("mousemove", function (e) {
@@ -221,7 +211,7 @@ canvas.addEventListener("mousemove", function (e) {
   });
 
   if (hoveredPin) canvas.style.cursor = "pointer";
-  else canvas.style.cursor = "default";
+  else canvas.style.cursor = "grab";
 
   drawImage();
 });
