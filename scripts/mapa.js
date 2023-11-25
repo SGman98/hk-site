@@ -227,11 +227,12 @@ canvas.addEventListener("touchmove", function (e) {
     const currentTouchX = Math.abs(e.touches[0].clientX - e.touches[1].clientX);
     const currentTouchY = Math.abs(e.touches[0].clientY - e.touches[1].clientY);
 
-    const deltaScaleX = (currentTouchX - lastTouchX) / 1000;
-    const deltaScaleY = (currentTouchY - lastTouchY) / 1000;
+    const deltaScaleX = (currentTouchX - lastTouchX);
+    const deltaScaleY = (currentTouchY - lastTouchY);
 
     const prevScale = scale;
-    scale += (deltaScaleX + deltaScaleY) / 2;
+    if (deltaScaleX > 0 && deltaScaleY > 0 && scale < maxScale) scale += 0.1;
+    if (deltaScaleX < 0 && deltaScaleY < 0 && scale > minScale) scale -= 0.1;
 
     const midX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
     const midY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
